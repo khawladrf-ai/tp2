@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="WGS84">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Quick Start - Leaflet</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="communes.geojson"></script>	
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+</head>
+<body>
+
+
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+	const map = L.map('map').setView([33.975976549863546, -6.866950970294008], 13);
+        L.geoJSON(communes).addTo(map);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"OpenStreetMap</a>'
+	}).addTo(map);
+	
+const polygon1 = L.polygon([
+  [33.976105381141686, -6.866705667221401],
+  [33.97600028397331, -6.866536017505051],
+  [33.975918541641455, -6.866611119355767],
+  [33.97602586319028, -6.8667827807288315]
+], {
+  color: '#006837',
+  fillColor: '#a50f15',
+  fillOpacity: 0.3
+}).addTo(map).bindPopup('Département parasito');
+
+const polygon2 = L.polygon([
+  [33.97931658573606, -6.863607280610208],
+  [33.979097974293325, -6.863271580972948],
+  [33.978950136020615, -6.863417619798197],
+  [33.97916717509861, -6.863753319435458]
+], {
+  color: '#006837',
+  fillColor: '#ffffcc',
+  fillOpacity: 0.3
+}).addTo(map).bindPopup('Département des ressources naturelles');
+
+
+
+const polygon3 = L.polygon([
+   [33.97722407930193, -6.866369574128388],
+   [33.97727301348263, -6.866263516537813],
+   [33.977127533403326, -6.86613433360794],
+   [33.97700784278778, -6.866326513151764],
+   [33.97722936948497, -6.8665314515034765],
+   [33.977286900204454, -6.866439747571777]
+], {
+  color: '#006837',
+  fillColor: '#ffffcc',
+  fillOpacity: 0.3
+}).addTo(map).bindPopup('Département pole digitale');
+
+ 
+const polygon4 = L.polygon([
+  [33.97629386689336, -6.866788624630219],
+  [33.97640296411324, -6.866675398799705],
+  [33.9764415371306, -6.866704577692115],
+  [33.976547745887665, -6.866622099766744],
+  [33.97667730927135, -6.866630146394748],
+  [33.97679463902997, -6.86682393599522],
+  [33.97671761065751, -6.866892827003614],
+  [33.976774885366794, -6.866979328242385],
+  [33.97669780272653, -6.867056894741512],
+  [33.97672425380225, -6.8671047402710945],
+  [33.97665548098826, -6.867168534310539],
+  [33.9765602570001, -6.867031377125735],
+  [33.976474952081006, -6.867163749761195],
+  [33.976306987117866, -6.8673224374343125],
+  [33.976159521541994, -6.867109524827669]
+], {
+  color: '#006837',
+  fillColor: '#ffffcc',
+  fillOpacity: 0.3
+}).addTo(map).bindPopup('departement geomatique et topographie');
+
+	const popup = L.popup()
+		.setLatLng([33.975976549863546, -6.866950970294008])
+		.setContent('Institut Agronomique et veterinnaire Hassan II.')
+		.openOn(map);
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent(`You clicked the map at ${e.latlng.toString()}`)
+			.openOn(map);
+	}
+
+	map.on('click', onMapClick);
+
+</script>
+
+
+
+</body>
+</html>
